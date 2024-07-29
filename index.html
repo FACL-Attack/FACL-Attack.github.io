@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Frequency-Aware Contrastive Learning for Transferable Adversarial Attacks">
+  <meta name="keywords" content="FACL-Attack, Transferable Adversarial Attack, Transferable Attack, Transfer Attack, Adversarial Attack">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FACL-Attack</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Frequency-Aware Contrastive Learning for <br> Transferable Adversarial Attacks</h1>
+          <p class="is-size-3"; style="color:#808080; margin-top:-25px"> AAAI 2024 </p>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://hmyang1.github.io">Hunmin Yang</a><sup>1,2,*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sites.google.com/view/jongohjeong?pli=1">Jongoh Jeong</a><sup>1,*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sites.google.com/site/kjyoon">Kuk-Jin Yoon</a><sup>1</sup>
+            </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <sup>1</sup>KAIST,
+            </span>
+            <span class="author-block">
+              <sup>2</sup>ADD
+            </span>
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://FACL-Attack.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://FACL-Attack.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#BibTeX"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-obp"></i>
+                  </span>
+                  <span>BibTex</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="mailto:facl.attack@gmail.com"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-envelope"></i>
+                  </span>
+                  <span>Contact</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser -->
+<section class="hero teaser" style="margin-top:-40px">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/Motivation.png"  class="center"/>
+    </div>
+    <h2 class="subtitle has-text-centered" style="margin-top:-12px">
+    To boost the transferability of adversarial examples, we exploit band-specific characteristics of natural images in the frequency domain.
+    Our approach randomizes <i>domain-variant</i> low- and high-band data (FADR module), and perturbs <i>domain-invariant</i> mid-band features (FACL module).
+      <br><br>
+      <div class="gray-box-custom" style="margin-top:-12px">
+        <b>FACL-Attack</b> enhances transferable adversarial attacks via frequency domain manipulations.
+      </div>
+    </h2>
+  </div>
+</section>
+
+
+<!-- Abstract -->
+<br>
+<hr>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" style="margin-top:-5px">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Deep neural networks are known to be vulnerable to security risks due to the inherent transferable nature of adversarial examples.
+            Despite the success of recent generative model-based attacks demonstrating strong transferability, it still remains a challenge to design an efficient attack strategy in a real-world strict black-box setting, where both the target domain and model architectures are unknown.
+            In this paper, we seek to explore a feature contrastive approach in the frequency domain to generate adversarial examples that are robust in both cross-domain and cross-model settings.
+            With that goal in mind, we propose two modules that are only employed during the training phase: a <b>F</b>requency-<b>A</b>ware <b>D</b>omain <b>R</b>andomization (FADR) module to randomize domain-variant low- and high-range frequency components and a <b>F</b>requency-<b>A</b>ugmented <b>C</b>ontrastive <b>L</b>earning (FACL) module to effectively separate domain-invariant mid-frequency features of clean and perturbed image.
+            We demonstrate strong transferability of our generated adversarial perturbations through extensive cross-domain and cross-model experiments, while keeping the inference time complexity.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<!-- Method -->
+<br>
+<hr>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" style="margin-top:-5px">Method</h2>
+      </div>
+    </div>
+</section>
+
+
+<br>
+<section class="hero teaser" style="margin-top:-5px">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/Overview.png" class="center-img"/>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified" style="margin-top:-22px">
+          <p>
+            <b>Overview of FACL-Attack.</b>&nbsp;
+            From the clean input image, our FADR module outputs the augmented image after spectral transformation, which is targeted to randomize only the domain-variant low/high FCs.
+            The perturbation generator then produces the bounded adversarial image with perturbation projector from the randomized image.
+            The resulting clean and adversarial image pairs are decomposed into mid-band (<i>domain-agnostic</i>) and low/high-band (<i>domain-specific</i>) FCs, whose features extracted from the k-th middle layer of the surrogate model are contrasted in our FACL module to boost the adversarial transferability.
+            The adversarial image is colorized for visualization.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<br>
+<section class="hero teaser" style="margin-top:-5px">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/FADR_Image.png" class="center-img"/>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified" style="margin-top:-22px">
+          <p>
+            <b>Visualization of spectral transformation by FADR.</b>&nbsp;
+            From the clean input image (column 1), our FADR decomposes the image into mid-band (column 2) and low/high-band (column 3) FCs.
+            The FADR only randomizes the <i>domain-variant</i> low/high-band FCs, yielding the augmented output in column 4.
+            Here we demonstrate transformations with large hyper-parameters for visualization.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<br>
+<section class="hero teaser" style="margin-top:-5px">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/FACL_Difference_Map.png" class="center-img"/>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified" style="margin-top:-22px">
+          <p>
+            <b>Difference map of perturbed features by FACL.</b>&nbsp;
+            Clean image, unbounded adversarial images from baseline and FACL, and the final difference map (Diff(baseline, baseline+FACL)), from left to right.
+            Our generated perturbations are more focused on domain-agnostic semantic region such as shape, facilitating more transferable attack.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+
+<!-- Experimental Results -->
+<br>
+<hr>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" style="margin-top:-5px">Experimental Results</h2>
+      </div>
+    </div>
+</section>
+
+
+<br>
+<section class="hero teaser" style="margin-top:-5px">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/Experimental_Results_Cross_Domain.PNG" class="center-img"/>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified" style="margin-top:-22px">
+          <p>
+            <b>Cross-domain evaluation results.</b>&nbsp;
+            The perturbation generator is trained on ImageNet-1K with VGG-16 as the surrogate model and evaluated on black-box domains with models.
+            We compare the top-1 classification accuracy after attacks.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<br><br>
+<section class="hero teaser" style="margin-top:-5px">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/Experimental_Results_Cross_Model.PNG" class="center-img"/>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified" style="margin-top:-22px">
+          <p>
+            <b>Cross-model evaluation results.</b>&nbsp;
+            The perturbation generator is trained on ImageNet-1K with VGG-16 as the surrogate model and evaluated on black-box models.
+            We compare the top-1 classification accuracy after attacks.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<br><br>
+<section class="hero teaser" style="margin-top:-5px">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/Experimental_Results_Cross_Model_SOTA.PNG" class="center-img"/>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified" style="margin-top:-22px">
+          <p>
+            <b>Evaluation on the state-of-the-art models.</b>&nbsp;
+            The perturbation generator is trained on ImageNet-1K with VGG-16 as the surrogate model and evaluated on black-box models.
+            We compare the top-1 classification accuracy after attacks.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<br>
+<section class="hero teaser" style="margin-top:20px">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static\images\Qualtitative_Results.png" class="center-img"/>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified" style="margin-top:-22px">
+          <p>
+            <b>Qualitative results on various domains.</b>&nbsp;
+            FACL-Attack successfully fools the classifier, causing it to predict the clean image labels (in black) as the mispredicted class labels shown at the bottom (in red).
+            From top to bottom: clean images, unbounded adversarial images, and bounded adversarial images which are <i>actual inputs</i> to the classifier.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<!-- Contact. -->
+<br>
+<hr>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" style="margin-top:-5px">Contact</h2>
+        <div class="is-centered has-text-centered is-size-5">
+          <p>
+            FACL-Attack (<a href="mailto:facl.attack@gmail.com">facl.attack@gmail.com</a>)
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<!-- BibTex. -->
+<hr>
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTex</h2>
+    <pre><code>@InProceedings{yang2024FACLAttack,
+      title={Frequency-Aware Contrastive Learning for Transferable Adversarial Attacks},
+      author={Hunmin Yang and Jongoh Jeong and Kuk-Jin Yoon},
+      booktitle={AAAI},
+      year={2024}
+}</code></pre>
+  </div>
+</section>
+<br><br>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://FACL-Attack.github.io">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://hmyang1.github.io/" class="external-link" disabled>
+        <i class="fas fa-user"></i>
+      </a>
+      <a class="icon-link" href="mailto:facl.attack@gmail.com" class="external-link" disabled>
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This website template was adapted from <a href="https://nerfies.github.io/">Nerfies website</a>. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
