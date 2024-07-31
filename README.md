@@ -1,7 +1,7 @@
 # [AAAI'24] Frequency-Aware Contrastive Learning for Transferable Adversarial Attacks
-### [Paper](https://facl-attack.github.io) | [Project Page](https://facl-attack.github.io)
+### [Paper](https://arxiv.org/pdf/2407.20653) | [Project Page](https://facl-attack.github.io)
 
-- This is the project page of [Frequency-Aware Contrastive Learning for Transferable Adversarial Attacks](https://facl-attack.github.io) (AAAI 2024).
+- This is the project page of [Frequency-Aware Contrastive Learning for Transferable Adversarial Attacks](https://arxiv.org/abs/2407.20653) (AAAI 2024).
 
 ---
 
